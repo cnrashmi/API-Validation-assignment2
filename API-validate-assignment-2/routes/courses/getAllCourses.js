@@ -12,6 +12,12 @@ router.get("/courses", async (req, res) => {
      [`%${req.query.title}%`]
     );
     }
+     else if (req.query.course_name) {
+      [results] = await conn.query(
+        "SELECT * FROM courses WHERE course_name LIKE ?",
+        [`%${req.query.course_name}%`]
+      );
+    }
     else{
       [results] = await conn.query(
         "SELECT * FROM courses"
