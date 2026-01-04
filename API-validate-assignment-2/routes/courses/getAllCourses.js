@@ -7,13 +7,13 @@ router.get("/courses", async (req, res) => {
     const conn = await dbConnect();
    let results;
    if(req.query.title){
-        [results] = await connection.query(
+        [results] = await conn.query(
       "SELECT * FROM courses WHERE title LIKE ?",
      [`%${req.query.title}%`]
     );
     }
     else{
-      [results] = await connection.query(
+      [results] = await conn.query(
         "SELECT * FROM courses"
       );
     }
